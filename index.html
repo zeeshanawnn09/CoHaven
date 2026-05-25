@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cohaven — Luxury Property Management & Co-Hosting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+Infant:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --forest: #2C4A35;
+    --forest-deep: #1e3426;
+    --forest-mid: #3a5c44;
+    --forest-light: #4d7a5a;
+    --champagne: #F5DEB3;
+    --champagne-light: #faefd8;
+    --champagne-dim: #d4b98a;
+    --gold: #C9A96E;
+    --gold-pale: #e8d5a8;
+    --cream: #fdf6e8;
+    --ink: #1a1a1a;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 5vw;
+    background: rgba(28, 42, 32, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(197,165,105,0.18);
+    transition: padding 0.4s;
+  }
+  nav.scrolled { padding: 0.9rem 5vw; }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.7rem;
+    text-decoration: none;
+  }
+  .nav-logo svg { width: 34px; height: 34px; }
+  .nav-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.55rem;
+    font-weight: 400;
+    color: var(--champagne);
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,222,179,0.75);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--champagne); }
+
+  .nav-cta {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--forest-deep) !important;
+    background: var(--champagne);
+    padding: 0.55rem 1.4rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-pale); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--forest-deep);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 5vw 5rem;
+  }
+
+  /* Subtle noise texture */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* Radial glow */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 55% at 50% 45%, rgba(44,74,53,0.6) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-ornament {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: min(600px, 90vw); height: min(600px, 90vw);
+    border: 1px solid rgba(197,165,105,0.07);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-ornament::before {
+    content: '';
+    position: absolute; inset: 25px;
+    border: 1px solid rgba(197,165,105,0.05);
+    border-radius: 50%;
+  }
+
+  .hero-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+    position: relative; z-index: 2;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 1.05;
+    color: var(--champagne-light);
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: fadeUp 1.1s ease 0.5s forwards;
+    position: relative; z-index: 2;
+    max-width: 850px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Infant', serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,222,179,0.6);
+    max-width: 540px;
+    line-height: 1.75;
+    margin-top: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 1.1s ease 0.8s forwards;
+    position: relative; z-index: 2;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1.2rem; align-items: center;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 1.1s ease 1.1s forwards;
+    position: relative; z-index: 2;
+    flex-wrap: wrap; justify-content: center;
+  }
+
+  .btn-primary {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--champagne);
+    color: var(--forest-deep);
+    padding: 0.9rem 2.2rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--gold-pale);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .btn-ghost {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    padding: 0.9rem 2.2rem;
+    border: 1px solid rgba(245,222,179,0.35);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover {
+    border-color: var(--champagne);
+    transform: translateY(-2px);
+  }
+
+  /* Stats bar */
+  .hero-stats {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex;
+    border-top: 1px solid rgba(197,165,105,0.12);
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 1.1s ease 1.4s forwards;
+  }
+  .hero-stat {
+    flex: 1;
+    padding: 2rem 1rem;
+    text-align: center;
+    border-right: 1px solid rgba(197,165,105,0.12);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: rgba(245,222,179,0.45);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--forest);
+    padding: 1rem 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(197,165,105,0.15);
+    border-bottom: 1px solid rgba(197,165,105,0.15);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  .marquee-track span {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0 2.5rem;
+    white-space: nowrap;
+  }
+  .marquee-track span.dot { color: rgba(197,165,105,0.4); padding: 0; }
+
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 8rem 5vw; }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    line-height: 1.1;
+    color: var(--forest-deep);
+    max-width: 680px;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--forest-light);
+  }
+  .section-title.light { color: var(--champagne-light); }
+  .section-title.light em { color: var(--gold); }
+
+  /* ── INTRO ── */
+  .intro {
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .intro-visual {
+    position: relative; aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+  .intro-visual-bg {
+    width: 100%; height: 100%;
+    background: var(--forest);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .intro-visual-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--forest-deep) 0%, var(--forest-mid) 100%);
+  }
+  .arch-illustration {
+    position: relative; z-index: 1;
+    width: 55%; max-width: 200px;
+  }
+  .intro-accent {
+    position: absolute; bottom: -1px; right: -1px;
+    width: 40%;
+    height: 40%;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+  }
+  .intro-accent-inner {
+    position: absolute; top: 12px; left: 12px; right: -12px; bottom: -12px;
+    border: 1px solid rgba(197,165,105,0.3);
+  }
+
+  .intro-content .section-title { margin-bottom: 2rem; }
+  .intro-body {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 1.12rem;
+    line-height: 1.9;
+    color: #4a4a4a;
+    font-weight: 300;
+    max-width: 480px;
+  }
+  .intro-divider {
+    width: 50px; height: 1px;
+    background: var(--gold);
+    margin: 2rem 0;
+  }
+  .intro-features {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.2rem; margin-top: 2rem;
+  }
+  .intro-feat {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+  }
+  .feat-icon {
+    width: 28px; height: 28px; min-width: 28px;
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .feat-icon svg { width: 14px; height: 14px; }
+  .feat-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: #555;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    background: var(--forest-deep);
+    color: var(--champagne);
+  }
+  .services-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 4rem;
+    flex-wrap: wrap; gap: 2rem;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(197,165,105,0.15);
+  }
+  .service-card {
+    background: var(--forest-deep);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { background: rgba(44,74,53,0.7); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    color: rgba(197,165,105,0.35);
+    letter-spacing: 0.2em;
+    margin-bottom: 1.8rem;
+    display: block;
+  }
+  .service-icon { margin-bottom: 1.5rem; }
+  .service-icon svg { width: 36px; height: 36px; stroke: var(--gold); fill: none; stroke-width: 1.2; }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--champagne-light);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .service-desc {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(245,222,179,0.55);
+    line-height: 1.75;
+  }
+  .service-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: 1.5rem;
+  }
+  .tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    border: 1px solid rgba(197,165,105,0.25);
+    padding: 0.25rem 0.6rem;
+    text-transform: uppercase;
+  }
+
+  /* ── CO-HOSTING ── */
+  .cohosting {
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .cohosting-steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex; gap: 1.8rem; align-items: flex-start;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(44,74,53,0.1);
+  }
+  .step:first-child { border-top: 1px solid rgba(44,74,53,0.1); }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: rgba(197,165,105,0.3);
+    line-height: 1;
+    min-width: 2.5rem;
+  }
+  .step-content {}
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--forest-deep);
+    margin-bottom: 0.5rem;
+  }
+  .step-desc {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 0.98rem;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* ── WHY US ── */
+  .why {
+    background: var(--forest);
+    text-align: center;
+    padding: 8rem 5vw;
+  }
+  .why .section-label { text-align: center; }
+  .why .section-title { margin: 0 auto 1rem; text-align: center; }
+  .why-intro {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(245,222,179,0.55);
+    max-width: 520px;
+    margin: 0 auto 4rem;
+    line-height: 1.8;
+  }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(197,165,105,0.12);
+    max-width: 1100px; margin: 0 auto;
+  }
+  .why-card {
+    background: var(--forest);
+    padding: 3rem 2rem;
+    transition: background 0.3s;
+  }
+  .why-card:hover { background: var(--forest-deep); }
+  .why-card-icon {
+    width: 52px; height: 52px;
+    border: 1px solid rgba(197,165,105,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+  .why-card-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.3; }
+  .why-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--champagne-light);
+    margin-bottom: 0.7rem;
+  }
+  .why-card-text {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(245,222,179,0.5);
+    line-height: 1.7;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    background: var(--cream);
+    text-align: center;
+  }
+  .testimonials .section-title { margin: 0 auto 4rem; text-align: center; }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; max-width: 1100px; margin: 0 auto;
+  }
+  .testimonial {
+    background: white;
+    padding: 2.8rem 2.5rem;
+    border-bottom: 2px solid var(--gold);
+    text-align: left;
+    position: relative;
+  }
+  .testimonial::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 300;
+    color: rgba(197,165,105,0.15);
+    position: absolute; top: 0.5rem; left: 1.5rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .testimonial-text {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 1.08rem;
+    font-style: italic;
+    font-weight: 300;
+    color: #444;
+    line-height: 1.8;
+    position: relative; z-index: 1;
+    margin-bottom: 1.8rem;
+  }
+  .testimonial-author {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    color: var(--forest-light);
+    text-transform: uppercase;
+  }
+  .testimonial-location {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 0.9rem;
+    color: rgba(0,0,0,0.35);
+    margin-top: 0.2rem;
+  }
+  .stars {
+    display: flex; gap: 3px; margin-bottom: 1.2rem;
+  }
+  .stars span {
+    color: var(--gold); font-size: 0.85rem;
+  }
+
+  /* ── PRICING ── */
+  .pricing {
+    background: var(--forest-deep);
+    text-align: center;
+  }
+  .pricing .section-title { margin: 0 auto 1rem; text-align: center; }
+  .pricing-sub {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: rgba(245,222,179,0.5);
+    margin: 0 auto 4rem;
+    max-width: 500px;
+    line-height: 1.7;
+  }
+  .pricing-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; max-width: 860px; margin: 0 auto;
+    background: rgba(197,165,105,0.12);
+  }
+  .pricing-card {
+    background: var(--forest-deep);
+    padding: 3.5rem 3rem;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .pricing-card.featured {
+    background: var(--forest-mid);
+  }
+  .pricing-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    background: var(--gold);
+    color: var(--forest-deep);
+    padding: 0.3rem 0.8rem;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+  .pricing-plan {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--champagne);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .pricing-plan-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    color: rgba(197,165,105,0.45);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2rem;
+  }
+  .pricing-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    display: flex; align-items: flex-start; gap: 0.2rem;
+  }
+  .pricing-currency {
+    font-size: 1.5rem;
+    margin-top: 0.6rem;
+  }
+  .pricing-period {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 0.95rem;
+    color: rgba(245,222,179,0.4);
+    font-style: italic;
+    align-self: flex-end; padding-bottom: 0.4rem;
+  }
+  .pricing-divider { width: 40px; height: 1px; background: rgba(197,165,105,0.3); margin: 2rem 0; }
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+  .pricing-features li {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 1rem;
+    color: rgba(245,222,179,0.65);
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    line-height: 1.4;
+  }
+  .pricing-features li::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 0.55rem;
+    margin-top: 0.35rem;
+    flex-shrink: 0;
+  }
+  .pricing-cta { margin-top: 2.5rem; }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: start;
+  }
+  .contact-info .section-title { margin-bottom: 1.5rem; }
+  .contact-body {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+  }
+  .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .contact-detail-icon {
+    width: 36px; height: 36px; min-width: 36px;
+    border: 1px solid rgba(44,74,53,0.2);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .contact-detail-icon svg { width: 15px; height: 15px; stroke: var(--forest-light); fill: none; stroke-width: 1.5; }
+  .contact-detail-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    color: #999;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+  .contact-detail-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--forest-deep);
+    text-decoration: none;
+  }
+  .contact-detail-value:hover { color: var(--forest-light); }
+
+  /* Form */
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    color: #888;
+    text-transform: uppercase;
+  }
+  .form-input, .form-select, .form-textarea {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--forest-deep);
+    background: white;
+    border: 1px solid rgba(44,74,53,0.15);
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    appearance: none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    margin-top: 0.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--forest-deep);
+    color: var(--champagne);
+    border: none;
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--forest-mid); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--forest-deep);
+    border-top: 1px solid rgba(197,165,105,0.12);
+    padding: 4rem 5vw 2rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(197,165,105,0.1);
+  }
+  .footer-brand-text {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,222,179,0.45);
+    line-height: 1.75;
+    margin-top: 1rem;
+    max-width: 280px;
+  }
+  .footer-col-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+  .footer-links a {
+    font-family: 'Cormorant Infant', serif;
+    font-size: 0.95rem;
+    color: rgba(245,222,179,0.45);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--champagne); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 2rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    color: rgba(245,222,179,0.25);
+    text-transform: uppercase;
+  }
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: rgba(197,165,105,0.3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .intro, .cohosting, .contact { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .hero-stats { display: none; }
+    .footer-top { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .intro-features { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Arch icon recreated from logo -->
+      <path d="M18 95 L18 52 Q18 22 50 22 Q82 22 82 52 L82 95" stroke="#F5DEB3" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      <circle cx="50" cy="48" r="9" fill="#F5DEB3"/>
+      <!-- star/diamond -->
+      <path d="M50 65 L58 82 L50 115 L42 82 Z" fill="#F5DEB3"/>
+      <path d="M34 82 L50 75 L66 82 L50 89 Z" fill="#F5DEB3"/>
+    </svg>
+    <span class="nav-logo-text">Cohaven</span>
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#cohosting">Co-Hosting</a>
+    <a href="#why">Why Us</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact" class="nav-cta">Enquire</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ornament"></div>
+  <span class="hero-tag">Property Management & Co-Hosting</span>
+  <h1>Your Property.<br>Our <em>Devotion.</em></h1>
+  <p class="hero-sub">Cohaven elevates your short-term rental into a refined hospitality experience — delivering luxury outcomes for discerning property owners.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Request a Consultation</a>
+    <a href="#services" class="btn-ghost">Explore Services</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">98%</span>
+      <span class="hero-stat-label">Guest Satisfaction</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">24/7</span>
+      <span class="hero-stat-label">Guest Support</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">5★</span>
+      <span class="hero-stat-label">Average Rating</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">40%</span>
+      <span class="hero-stat-label">Revenue Increase</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Property Management</span><span class="dot">✦</span>
+    <span>Co-Hosting Services</span><span class="dot">✦</span>
+    <span>Guest Communication</span><span class="dot">✦</span>
+    <span>Dynamic Pricing</span><span class="dot">✦</span>
+    <span>Listing Optimisation</span><span class="dot">✦</span>
+    <span>Airbnb Management</span><span class="dot">✦</span>
+    <span>Vrbo Management</span><span class="dot">✦</span>
+    <span>Revenue Growth</span><span class="dot">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span>Property Management</span><span class="dot">✦</span>
+    <span>Co-Hosting Services</span><span class="dot">✦</span>
+    <span>Guest Communication</span><span class="dot">✦</span>
+    <span>Dynamic Pricing</span><span class="dot">✦</span>
+    <span>Listing Optimisation</span><span class="dot">✦</span>
+    <span>Airbnb Management</span><span class="dot">✦</span>
+    <span>Vrbo Management</span><span class="dot">✦</span>
+    <span>Revenue Growth</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="intro" id="about">
+  <div class="intro-visual reveal">
+    <div class="intro-visual-bg">
+      <svg class="arch-illustration" viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 170 L20 85 Q20 15 70 15 Q120 15 120 85 L120 170" stroke="rgba(245,222,179,0.5)" stroke-width="3" fill="none"/>
+        <path d="M35 170 L35 90 Q35 35 70 35 Q105 35 105 90 L105 170" stroke="rgba(245,222,179,0.18)" stroke-width="1.5" fill="none"/>
+        <circle cx="70" cy="82" r="14" fill="rgba(245,222,179,0.3)" stroke="rgba(245,222,179,0.6)" stroke-width="1.5"/>
+        <path d="M70 100 L80 125 L70 168 L60 125 Z" fill="rgba(245,222,179,0.35)"/>
+        <path d="M52 125 L70 118 L88 125 L70 132 Z" fill="rgba(245,222,179,0.3)"/>
+        <line x1="20" y1="145" x2="120" y2="145" stroke="rgba(197,165,105,0.2)" stroke-width="1"/>
+      </svg>
+      <div class="intro-accent"><div class="intro-accent-inner"></div></div>
+    </div>
+  </div>
+  <div class="intro-content reveal">
+    <span class="section-label">About Cohaven</span>
+    <h2 class="section-title">Where Luxury Meets <em>Effortless</em> Hosting</h2>
+    <div class="intro-divider"></div>
+    <p class="intro-body">
+      Cohaven is a premium property management and co-hosting service designed for property owners who value excellence. We blend white-glove hospitality with data-driven strategy to maximise your revenue while you enjoy complete peace of mind.
+    </p>
+    <div class="intro-features">
+      <div class="intro-feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <span class="feat-text">Full Property Management</span>
+      </div>
+      <div class="intro-feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <span class="feat-text">Co-Hosting Services</span>
+      </div>
+      <div class="intro-feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <span class="feat-text">Dynamic Pricing Strategy</span>
+      </div>
+      <div class="intro-feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        </div>
+        <span class="feat-text">5-Star Guest Experience</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title light">A Complete Suite of<br><em>Premium Services</em></h2>
+    </div>
+    <a href="#contact" class="btn-ghost">View All Services</a>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">01</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </div>
+      <h3 class="service-name">Listing Optimisation</h3>
+      <p class="service-desc">SEO-crafted titles, photography guidance, and platform-specific strategies that elevate your listing above the competition.</p>
+      <div class="service-tags">
+        <span class="tag">SEO</span><span class="tag">Copywriting</span><span class="tag">Photography</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">02</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <h3 class="service-name">Guest Communication</h3>
+      <p class="service-desc">24/7 responsive messaging, seamless check-in coordination, and professional resolution of every guest inquiry and issue.</p>
+      <div class="service-tags">
+        <span class="tag">24/7</span><span class="tag">Automation</span><span class="tag">Concierge</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">03</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3 class="service-name">Revenue Strategy</h3>
+      <p class="service-desc">Dynamic pricing with PriceLabs, seasonal rate calibration, and occupancy optimisation to ensure every night performs at its peak.</p>
+      <div class="service-tags">
+        <span class="tag">PriceLabs</span><span class="tag">Dynamic</span><span class="tag">Analytics</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">04</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </div>
+      <h3 class="service-name">Multi-Platform Management</h3>
+      <p class="service-desc">Unified calendar management across Airbnb, Vrbo, Booking.com and more — zero double bookings, maximum reach.</p>
+      <div class="service-tags">
+        <span class="tag">Airbnb</span><span class="tag">Vrbo</span><span class="tag">Booking.com</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">05</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg>
+      </div>
+      <h3 class="service-name">Operations Management</h3>
+      <p class="service-desc">Cleaning crews, maintenance scheduling, turnover coordination, and insurance claims — handled with white-glove precision.</p>
+      <div class="service-tags">
+        <span class="tag">Turnover</span><span class="tag">Maintenance</span><span class="tag">Insurance</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">06</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3 class="service-name">Reporting & Analytics</h3>
+      <p class="service-desc">Monthly performance dashboards, revenue insights, and actionable recommendations to continuously elevate your ROI.</p>
+      <div class="service-tags">
+        <span class="tag">Reports</span><span class="tag">ROI</span><span class="tag">Insights</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CO-HOSTING -->
+<section class="cohosting" id="cohosting">
+  <div class="reveal">
+    <span class="section-label">Co-Hosting Programme</span>
+    <h2 class="section-title">Stay in Control.<br><em>Share the Work.</em></h2>
+    <div class="intro-divider" style="margin: 2rem 0;"></div>
+    <p class="intro-body">
+      Our co-hosting service is designed for property owners who want to remain involved while offloading the operational complexity. We act as your trusted partner — handling guest relations, logistics, and performance while you retain full ownership and visibility.
+    </p>
+    <div style="margin-top: 2.5rem;">
+      <a href="#contact" class="btn-primary" style="background: var(--forest-deep); color: var(--champagne);">Start Co-Hosting</a>
+    </div>
+  </div>
+  <div class="cohosting-steps reveal">
+    <div class="step">
+      <span class="step-num">01</span>
+      <div class="step-content">
+        <h3 class="step-title">Onboarding & Property Audit</h3>
+        <p class="step-desc">We begin with a thorough audit of your listing, pricing history, and platform presence to identify every opportunity for improvement.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <div class="step-content">
+        <h3 class="step-title">Listing Elevation</h3>
+        <p class="step-desc">Photography direction, refined descriptions, and platform-optimised presentation to convert browsers into bookings.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <div class="step-content">
+        <h3 class="step-title">Revenue Calibration</h3>
+        <p class="step-desc">Dynamic pricing tools and market intelligence ensure your nightly rate maximises revenue across every season and event.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">04</span>
+      <div class="step-content">
+        <h3 class="step-title">Ongoing Guest Management</h3>
+        <p class="step-desc">Seamless guest communication, check-in logistics, and issue resolution — handled swiftly and professionally at all hours.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">05</span>
+      <div class="step-content">
+        <h3 class="step-title">Monthly Review & Growth</h3>
+        <p class="step-desc">Transparent performance reports delivered monthly, with strategic recommendations to keep your property growing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <span class="section-label">Why Cohaven</span>
+  <h2 class="section-title light reveal">The Standard Others<br><em>Aspire To</em></h2>
+  <p class="why-intro reveal">We don't manage properties. We cultivate experiences — for your guests, and for you.</p>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <h3 class="why-card-title">White-Glove Standard</h3>
+      <p class="why-card-text">Every interaction — from listing copy to guest checkout — is handled with the precision of a luxury hospitality brand.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      </div>
+      <h3 class="why-card-title">Data-Driven Growth</h3>
+      <p class="why-card-text">Decisions backed by real market data, competitor analysis, and performance metrics — never guesswork.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3 class="why-card-title">Always Available</h3>
+      <p class="why-card-text">Round-the-clock guest support ensures no booking opportunity or guest concern ever goes unattended.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+      </div>
+      <h3 class="why-card-title">Full Transparency</h3>
+      <p class="why-card-text">Monthly reporting keeps you in full command — occupancy, revenue, reviews, and recommendations all in one clear view.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <span class="section-label" style="text-align:center;display:block;">Client Voices</span>
+  <h2 class="section-title reveal">Trusted by Property<br><em>Owners Across the UK</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial reveal">
+      <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testimonial-text">Cohaven transformed my Airbnb from a side project into a genuinely profitable investment. Their attention to detail is extraordinary — my guests consistently leave five-star reviews.</p>
+      <span class="testimonial-author">James Whitfield</span>
+      <span class="testimonial-location">London, UK</span>
+    </div>
+    <div class="testimonial reveal">
+      <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testimonial-text">As an overseas property owner, I needed a team I could trust completely. Cohaven handles everything seamlessly — I simply watch the revenue reports each month.</p>
+      <span class="testimonial-author">Sofia Andersen</span>
+      <span class="testimonial-location">Edinburgh, UK</span>
+    </div>
+    <div class="testimonial reveal">
+      <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testimonial-text">The co-hosting arrangement was exactly what I needed — I stay informed and in control, but the day-to-day is handled with a professionalism I couldn't replicate alone.</p>
+      <span class="testimonial-author">Marcus Chen</span>
+      <span class="testimonial-location">Manchester, UK</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <span class="section-label" style="display:block;text-align:center;">Investment</span>
+  <h2 class="section-title light reveal">Transparent,<br><em>Refined Pricing</em></h2>
+  <p class="pricing-sub reveal">One straightforward structure. No hidden fees. Just premium results.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <span class="pricing-plan">Co-Hosting</span>
+      <span class="pricing-plan-sub">For active property owners</span>
+      <div class="pricing-price">
+        <span class="pricing-currency">£</span>
+        <span>75</span>
+        <span class="pricing-period">/ property / month</span>
+      </div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>Guest communication (9AM–9PM)</li>
+        <li>Listing optimisation & copywriting</li>
+        <li>Review management & responses</li>
+        <li>Check-in & checkout coordination</li>
+        <li>Cleaner & maintenance scheduling</li>
+        <li>Monthly performance report</li>
+      </ul>
+      <div class="pricing-cta">
+        <a href="#contact" class="btn-ghost">Get Started</a>
+      </div>
+    </div>
+    <div class="pricing-card featured reveal">
+      <span class="pricing-badge">Most Popular</span>
+      <span class="pricing-plan">Full Management</span>
+      <span class="pricing-plan-sub">Completely hands-free ownership</span>
+      <div class="pricing-price">
+        <span class="pricing-currency">£</span>
+        <span style="font-size:2.5rem">Custom</span>
+      </div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>Everything in Co-Hosting</li>
+        <li>24/7 guest support coverage</li>
+        <li>Dedicated account manager</li>
+        <li>Multi-platform channel management</li>
+        <li>Dynamic pricing with PriceLabs</li>
+        <li>Insurance claims handling</li>
+        <li>Priority response & escalation</li>
+        <li>Custom automation workflows</li>
+      </ul>
+      <div class="pricing-cta">
+        <a href="#contact" class="btn-primary" style="background:var(--champagne);color:var(--forest-deep);">Request a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info reveal">
+    <span class="section-label">Get in Touch</span>
+    <h2 class="section-title">Let's Begin Your<br><em>Cohaven Journey</em></h2>
+    <div class="intro-divider" style="margin: 2rem 0;"></div>
+    <p class="contact-body">
+      Whether you have a single property or a growing portfolio, we'd love to understand your needs and show you what Cohaven can deliver. Reach out for a complimentary consultation.
+    </p>
+    <div class="contact-details">
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <div>
+          <span class="contact-detail-label">Email</span>
+          <a href="mailto:hello@cohaven.co.uk" class="contact-detail-value">hello@cohaven.co.uk</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        </div>
+        <div>
+          <span class="contact-detail-label">Phone / WhatsApp</span>
+          <a href="tel:+447000000000" class="contact-detail-value">+44 (0)700 000 0000</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div>
+          <span class="contact-detail-label">Based in</span>
+          <span class="contact-detail-value">United Kingdom</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reveal">
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" placeholder="James"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" placeholder="Whitfield"/>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="james@example.com"/>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Phone / WhatsApp</label>
+        <input type="tel" class="form-input" placeholder="+44 7700 000000"/>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">Service Interest</label>
+          <select class="form-select">
+            <option value="">Select a service</option>
+            <option>Property Management</option>
+            <option>Co-Hosting</option>
+            <option>Both</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Number of Properties</label>
+          <select class="form-select">
+            <option value="">How many?</option>
+            <option>1</option>
+            <option>2–4</option>
+            <option>5–9</option>
+            <option>10+</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Tell us about your property</label>
+        <textarea class="form-textarea" placeholder="Location, property type, current platform, any specific challenges…"></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Enquiry →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#" class="nav-logo" style="text-decoration:none;">
+        <svg width="30" height="36" viewBox="0 0 100 120" fill="none">
+          <path d="M18 95 L18 52 Q18 22 50 22 Q82 22 82 52 L82 95" stroke="#F5DEB3" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+          <circle cx="50" cy="48" r="9" fill="#F5DEB3"/>
+          <path d="M50 65 L58 82 L50 115 L42 82 Z" fill="#F5DEB3"/>
+          <path d="M34 82 L50 75 L66 82 L50 89 Z" fill="#F5DEB3"/>
+        </svg>
+        <span class="nav-logo-text">Cohaven</span>
+      </a>
+      <p class="footer-brand-text">Premium property management and co-hosting services — crafted for property owners who expect more.</p>
+    </div>
+    <div>
+      <span class="footer-col-title">Services</span>
+      <ul class="footer-links">
+        <li><a href="#services">Listing Optimisation</a></li>
+        <li><a href="#services">Guest Communication</a></li>
+        <li><a href="#services">Revenue Strategy</a></li>
+        <li><a href="#services">Operations</a></li>
+        <li><a href="#services">Reporting</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Company</span>
+      <ul class="footer-links">
+        <li><a href="#about">About Cohaven</a></li>
+        <li><a href="#cohosting">Co-Hosting</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Connect</span>
+      <ul class="footer-links">
+        <li><a href="mailto:hello@cohaven.co.uk">hello@cohaven.co.uk</a></li>
+        <li><a href="tel:+447000000000">+44 (0)700 000 0000</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Cohaven. All rights reserved.</span>
+    <span class="footer-tagline">Managed with devotion.</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Sent ✓';
+    btn.style.background = 'var(--forest-light)';
+    setTimeout(() => {
+      btn.textContent = 'Send Enquiry →';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
