@@ -545,175 +545,23 @@
     line-height: 1.7;
   }
 
-  /* ── TESTIMONIALS ── */
-  .testimonials {
-    background: var(--cream);
-    text-align: center;
-  }
-  .testimonials .section-title { margin: 0 auto 4rem; text-align: center; }
-  .testimonials-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 2rem; max-width: 1100px; margin: 0 auto;
-  }
-  .testimonial {
-    background: white;
-    padding: 2.8rem 2.5rem;
-    border-bottom: 2px solid var(--gold);
-    text-align: left;
-    position: relative;
-  }
-  .testimonial::before {
-    content: '"';
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 5rem;
-    font-weight: 300;
-    color: rgba(197,165,105,0.15);
-    position: absolute; top: 0.5rem; left: 1.5rem;
-    line-height: 1;
-    pointer-events: none;
-  }
-  .testimonial-text {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 1.08rem;
-    font-style: italic;
-    font-weight: 300;
-    color: #444;
-    line-height: 1.8;
-    position: relative; z-index: 1;
-    margin-bottom: 1.8rem;
-  }
-  .testimonial-author {
-    font-family: 'Cinzel', serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
-    color: var(--forest-light);
-    text-transform: uppercase;
-  }
-  .testimonial-location {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 0.9rem;
-    color: rgba(0,0,0,0.35);
-    margin-top: 0.2rem;
-  }
-  .stars {
-    display: flex; gap: 3px; margin-bottom: 1.2rem;
-  }
-  .stars span {
-    color: var(--gold); font-size: 0.85rem;
-  }
-
-  /* ── PRICING ── */
-  .pricing {
-    background: var(--forest-deep);
-    text-align: center;
-  }
-  .pricing .section-title { margin: 0 auto 1rem; text-align: center; }
-  .pricing-sub {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 1.05rem;
-    font-style: italic;
-    color: rgba(245,222,179,0.5);
-    margin: 0 auto 4rem;
-    max-width: 500px;
-    line-height: 1.7;
-  }
-  .pricing-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 2px; max-width: 860px; margin: 0 auto;
-    background: rgba(197,165,105,0.12);
-  }
-  .pricing-card {
-    background: var(--forest-deep);
-    padding: 3.5rem 3rem;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-  }
-  .pricing-card.featured {
-    background: var(--forest-mid);
-  }
-  .pricing-badge {
-    font-family: 'Cinzel', serif;
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    background: var(--gold);
-    color: var(--forest-deep);
-    padding: 0.3rem 0.8rem;
-    text-transform: uppercase;
-    display: inline-block;
-    margin-bottom: 1.5rem;
-  }
-  .pricing-plan {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    color: var(--champagne);
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-  .pricing-plan-sub {
-    font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
-    color: rgba(197,165,105,0.45);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 2rem;
-  }
-  .pricing-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.5rem;
-    font-weight: 300;
-    color: var(--gold);
-    line-height: 1;
-    display: flex; align-items: flex-start; gap: 0.2rem;
-  }
-  .pricing-currency {
-    font-size: 1.5rem;
-    margin-top: 0.6rem;
-  }
-  .pricing-period {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 0.95rem;
-    color: rgba(245,222,179,0.4);
-    font-style: italic;
-    align-self: flex-end; padding-bottom: 0.4rem;
-  }
-  .pricing-divider { width: 40px; height: 1px; background: rgba(197,165,105,0.3); margin: 2rem 0; }
-  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
-  .pricing-features li {
-    font-family: 'Cormorant Infant', serif;
-    font-size: 1rem;
-    color: rgba(245,222,179,0.65);
-    display: flex; align-items: flex-start; gap: 0.7rem;
-    line-height: 1.4;
-  }
-  .pricing-features li::before {
-    content: '◆';
-    color: var(--gold);
-    font-size: 0.55rem;
-    margin-top: 0.35rem;
-    flex-shrink: 0;
-  }
-  .pricing-cta { margin-top: 2.5rem; }
-
   /* ── CONTACT ── */
   .contact {
     background: var(--cream);
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 6rem; align-items: start;
+    text-align: center;
   }
-  .contact-info .section-title { margin-bottom: 1.5rem; }
+  .contact-centered { display: block; }
   .contact-body {
     font-family: 'Cormorant Infant', serif;
     font-size: 1.05rem;
     font-weight: 300;
     color: #555;
     line-height: 1.85;
-    margin-bottom: 2.5rem;
+    margin-bottom: 0;
   }
-  .contact-details { display: flex; flex-direction: column; gap: 1rem; }
   .contact-detail {
     display: flex; align-items: center; gap: 1rem;
+    text-align: left;
   }
   .contact-detail-icon {
     width: 36px; height: 36px; min-width: 36px;
@@ -737,49 +585,6 @@
     text-decoration: none;
   }
   .contact-detail-value:hover { color: var(--forest-light); }
-
-  /* Form */
-  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.58rem;
-    letter-spacing: 0.15em;
-    color: #888;
-    text-transform: uppercase;
-  }
-  .form-input, .form-select, .form-textarea {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    color: var(--forest-deep);
-    background: white;
-    border: 1px solid rgba(44,74,53,0.15);
-    padding: 0.85rem 1rem;
-    outline: none;
-    transition: border-color 0.3s;
-    width: 100%;
-    appearance: none;
-  }
-  .form-input:focus, .form-select:focus, .form-textarea:focus {
-    border-color: var(--gold);
-  }
-  .form-textarea { resize: vertical; min-height: 120px; }
-  .form-submit {
-    margin-top: 0.5rem;
-    font-family: 'Cinzel', serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    background: var(--forest-deep);
-    color: var(--champagne);
-    border: none;
-    padding: 1rem 2.5rem;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    align-self: flex-start;
-  }
-  .form-submit:hover { background: var(--forest-mid); transform: translateY(-2px); }
 
   /* ── FOOTER ── */
   footer {
@@ -855,18 +660,14 @@
     .intro, .cohosting, .contact { grid-template-columns: 1fr; gap: 3rem; }
     .services-grid { grid-template-columns: 1fr 1fr; }
     .why-grid { grid-template-columns: 1fr 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr 1fr; }
     .footer-top { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 700px) {
     .nav-links { display: none; }
     .services-grid { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .pricing-grid { grid-template-columns: 1fr; }
     .hero-stats { display: none; }
     .footer-top { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
     .intro-features { grid-template-columns: 1fr; }
   }
 </style>
@@ -890,7 +691,6 @@
     <a href="#services">Services</a>
     <a href="#cohosting">Co-Hosting</a>
     <a href="#why">Why Us</a>
-    <a href="#pricing">Pricing</a>
     <a href="#contact" class="nav-cta">Enquire</a>
   </div>
 </nav>
@@ -1167,102 +967,25 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <span class="section-label" style="text-align:center;display:block;">Client Voices</span>
-  <h2 class="section-title reveal">Trusted by Property<br><em>Owners Across the UK</em></h2>
-  <div class="testimonials-grid">
-    <div class="testimonial reveal">
-      <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="testimonial-text">Cohaven transformed my Airbnb from a side project into a genuinely profitable investment. Their attention to detail is extraordinary — my guests consistently leave five-star reviews.</p>
-      <span class="testimonial-author">James Whitfield</span>
-      <span class="testimonial-location">London, UK</span>
-    </div>
-    <div class="testimonial reveal">
-      <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="testimonial-text">As an overseas property owner, I needed a team I could trust completely. Cohaven handles everything seamlessly — I simply watch the revenue reports each month.</p>
-      <span class="testimonial-author">Sofia Andersen</span>
-      <span class="testimonial-location">Edinburgh, UK</span>
-    </div>
-    <div class="testimonial reveal">
-      <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="testimonial-text">The co-hosting arrangement was exactly what I needed — I stay informed and in control, but the day-to-day is handled with a professionalism I couldn't replicate alone.</p>
-      <span class="testimonial-author">Marcus Chen</span>
-      <span class="testimonial-location">Manchester, UK</span>
-    </div>
-  </div>
-</section>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <span class="section-label" style="display:block;text-align:center;">Investment</span>
-  <h2 class="section-title light reveal">Transparent,<br><em>Refined Pricing</em></h2>
-  <p class="pricing-sub reveal">One straightforward structure. No hidden fees. Just premium results.</p>
-  <div class="pricing-grid">
-    <div class="pricing-card reveal">
-      <span class="pricing-plan">Co-Hosting</span>
-      <span class="pricing-plan-sub">For active property owners</span>
-      <div class="pricing-price">
-        <span class="pricing-currency">£</span>
-        <span>75</span>
-        <span class="pricing-period">/ property / month</span>
-      </div>
-      <div class="pricing-divider"></div>
-      <ul class="pricing-features">
-        <li>Guest communication (9AM–9PM)</li>
-        <li>Listing optimisation & copywriting</li>
-        <li>Review management & responses</li>
-        <li>Check-in & checkout coordination</li>
-        <li>Cleaner & maintenance scheduling</li>
-        <li>Monthly performance report</li>
-      </ul>
-      <div class="pricing-cta">
-        <a href="#contact" class="btn-ghost">Get Started</a>
-      </div>
-    </div>
-    <div class="pricing-card featured reveal">
-      <span class="pricing-badge">Most Popular</span>
-      <span class="pricing-plan">Full Management</span>
-      <span class="pricing-plan-sub">Completely hands-free ownership</span>
-      <div class="pricing-price">
-        <span class="pricing-currency">£</span>
-        <span style="font-size:2.5rem">Custom</span>
-      </div>
-      <div class="pricing-divider"></div>
-      <ul class="pricing-features">
-        <li>Everything in Co-Hosting</li>
-        <li>24/7 guest support coverage</li>
-        <li>Dedicated account manager</li>
-        <li>Multi-platform channel management</li>
-        <li>Dynamic pricing with PriceLabs</li>
-        <li>Insurance claims handling</li>
-        <li>Priority response & escalation</li>
-        <li>Custom automation workflows</li>
-      </ul>
-      <div class="pricing-cta">
-        <a href="#contact" class="btn-primary" style="background:var(--champagne);color:var(--forest-deep);">Request a Quote</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-info reveal">
+<section class="contact contact-centered" id="contact">
+  <div class="contact-info reveal" style="text-align:center; max-width:600px; margin:0 auto;">
     <span class="section-label">Get in Touch</span>
-    <h2 class="section-title">Let's Begin Your<br><em>Cohaven Journey</em></h2>
-    <div class="intro-divider" style="margin: 2rem 0;"></div>
+    <h2 class="section-title" style="margin:0 auto 1.5rem;">Let's Begin Your<br><em>Cohaven Journey</em></h2>
+    <div class="intro-divider" style="margin: 2rem auto;"></div>
     <p class="contact-body">
       Whether you have a single property or a growing portfolio, we'd love to understand your needs and show you what Cohaven can deliver. Reach out for a complimentary consultation.
     </p>
-    <div class="contact-details">
+    <div class="contact-details" style="display:flex; flex-direction:row; justify-content:center; flex-wrap:wrap; gap:2rem; margin-top:2.5rem;">
       <div class="contact-detail">
         <div class="contact-detail-icon">
           <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </div>
         <div>
           <span class="contact-detail-label">Email</span>
-          <a href="mailto:hello@cohaven.co.uk" class="contact-detail-value">hello@cohaven.co.uk</a>
+          <a href="mailto:zacva2020@gmail.com" class="contact-detail-value">zacva2020@gmail.com</a>
         </div>
       </div>
       <div class="contact-detail">
@@ -1271,7 +994,7 @@
         </div>
         <div>
           <span class="contact-detail-label">Phone / WhatsApp</span>
-          <a href="tel:+447000000000" class="contact-detail-value">+44 (0)700 000 0000</a>
+          <a href="tel:+923232013313" class="contact-detail-value">+92(323)2013313</a>
         </div>
       </div>
       <div class="contact-detail">
@@ -1280,58 +1003,14 @@
         </div>
         <div>
           <span class="contact-detail-label">Based in</span>
-          <span class="contact-detail-value">United Kingdom</span>
+          <span class="contact-detail-value">Pakistan</span>
         </div>
       </div>
     </div>
-  </div>
-  <div class="reveal">
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-field">
-          <label class="form-label">First Name</label>
-          <input type="text" class="form-input" placeholder="James"/>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Last Name</label>
-          <input type="text" class="form-input" placeholder="Whitfield"/>
-        </div>
-      </div>
-      <div class="form-field">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" placeholder="james@example.com"/>
-      </div>
-      <div class="form-field">
-        <label class="form-label">Phone / WhatsApp</label>
-        <input type="tel" class="form-input" placeholder="+44 7700 000000"/>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label class="form-label">Service Interest</label>
-          <select class="form-select">
-            <option value="">Select a service</option>
-            <option>Property Management</option>
-            <option>Co-Hosting</option>
-            <option>Both</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Number of Properties</label>
-          <select class="form-select">
-            <option value="">How many?</option>
-            <option>1</option>
-            <option>2–4</option>
-            <option>5–9</option>
-            <option>10+</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-field">
-        <label class="form-label">Tell us about your property</label>
-        <textarea class="form-textarea" placeholder="Location, property type, current platform, any specific challenges…"></textarea>
-      </div>
-      <button type="submit" class="form-submit">Send Enquiry →</button>
-    </form>
+    <div style="margin-top:3rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="mailto:zacva2020@gmail.com" class="btn-primary">Email Us</a>
+      <a href="tel:+923232013313" class="btn-ghost" style="color:var(--forest-deep); border-color:rgba(44,74,53,0.3);">Call Us</a>
+    </div>
   </div>
 </section>
 
@@ -1366,22 +1045,19 @@
         <li><a href="#about">About Cohaven</a></li>
         <li><a href="#cohosting">Co-Hosting</a></li>
         <li><a href="#why">Why Us</a></li>
-        <li><a href="#pricing">Pricing</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
     <div>
       <span class="footer-col-title">Connect</span>
       <ul class="footer-links">
-        <li><a href="mailto:hello@cohaven.co.uk">hello@cohaven.co.uk</a></li>
-        <li><a href="tel:+447000000000">+44 (0)700 000 0000</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">LinkedIn</a></li>
+        <li><a href="mailto:zacva2020@gmail.com">zacva2020@gmail.com</a></li>
+        <li><a href="tel:+447000000000">+92(323)2013313</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Cohaven. All rights reserved.</span>
+    <span class="footer-copy">© 2023 Cohaven. All rights reserved.</span>
     <span class="footer-tagline">Managed with devotion.</span>
   </div>
 </footer>
@@ -1403,18 +1079,6 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = 'Sent ✓';
-    btn.style.background = 'var(--forest-light)';
-    setTimeout(() => {
-      btn.textContent = 'Send Enquiry →';
-      btn.style.background = '';
-    }, 3000);
-  }
 </script>
 </body>
 </html>
