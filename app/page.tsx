@@ -5,6 +5,8 @@ import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { SectionHeading } from '@/components/section-heading';
 
+export const dynamic = 'force-static';
+
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">

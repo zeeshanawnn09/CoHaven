@@ -5,6 +5,8 @@ import { ContactForm } from '@/components/contact-form';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: 'Start Your Free Property Audit',
   description: 'Tell CoHaven about your short-term rental and request a complimentary property and listing audit.',

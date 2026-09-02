@@ -9,13 +9,15 @@ const footerLinks = [
   { href: '/contact', label: 'Get started' },
 ];
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 export function SiteFooter() {
   return (
     <footer className="bg-[#102a22] px-5 py-12 text-cream sm:px-8 lg:px-12 lg:py-16">
       <div className="mx-auto max-w-[1440px]">
         <div className="grid gap-12 border-b border-cream/10 pb-12 md:grid-cols-[1.2fr_.8fr_.8fr]">
           <div className="max-w-md">
-            <Image alt="CoHaven" className="h-auto w-[190px] brightness-0 invert sepia-[.25]" height={56} src="/cohaven-logo-transparent.png" width={220} />
+            <Image alt="CoHaven" className="h-auto w-[190px] brightness-0 invert sepia-[.25]" height={56} src={`${basePath}/cohaven-logo-transparent.png`} width={220} />
             <p className="mt-6 text-sm leading-7 text-cream/55">
               Premium property management and co-hosting—built around stronger stays,
               calmer ownership, and the details guests remember.

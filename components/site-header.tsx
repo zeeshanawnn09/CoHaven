@@ -20,6 +20,8 @@ const links = [
   { href: '/about#why-cohaven', label: 'Why CoHaven' },
 ];
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-cream/10 bg-forest/96 text-cream backdrop-blur-xl">
@@ -30,7 +32,7 @@ export function SiteHeader() {
             className="h-auto w-[158px] object-contain brightness-0 invert sepia-[.25] transition-opacity group-hover:opacity-80 sm:w-[174px]"
             height={50}
             priority
-            src="/cohaven-logo-transparent.png"
+            src={`${basePath}/cohaven-logo-transparent.png`}
             width={200}
           />
         </Link>

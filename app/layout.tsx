@@ -4,6 +4,8 @@ import './globals.css';
 
 const geist = Geist({ variable: '--font-geist', subsets: ['latin'] });
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: {
     default: 'CoHaven — Property Management & Co-Hosting',

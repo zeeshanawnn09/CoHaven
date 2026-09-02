@@ -7,6 +7,8 @@ import { SectionHeading } from '@/components/section-heading';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: 'Services & Pricing',
   description: 'Explore CoHaven co-hosting, full property management, and portfolio support for short-term rental owners.',

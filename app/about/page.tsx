@@ -7,6 +7,8 @@ import { SectionHeading } from '@/components/section-heading';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: 'About & How It Works',
   description: 'Learn how CoHaven combines hospitality, operations, and revenue strategy to make short-term rental ownership effortless.',
