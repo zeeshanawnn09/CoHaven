@@ -23,7 +23,7 @@ export default function ContactPage() {
             <h1 className="mt-8 font-serif text-[clamp(3.8rem,7vw,7.2rem)] leading-[.88] tracking-[-.05em]">Let’s make hosting<br /><em className="text-gold">feel effortless.</em></h1>
             <p className="mt-7 max-w-xl text-lg leading-8 text-cream/58">Share a little about your property and your goals. We’ll start with a considered review—no pressure, no generic sales script.</p>
             <div className="mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-              <ContactDetail icon={Mail} label="Email" value="cohaven.str@gmail.com" />
+              <ContactDetail icon={Mail} label="Email" value="zac@co-haven.co" />
               <ContactDetail icon={Clock3} label="Response" value="Within one business day" />
               <ContactDetail icon={MapPin} label="Based in" value="Pakistan · supporting remote markets" />
             </div>
